@@ -8,20 +8,38 @@ import { RoomContext } from "../context";
 export default class SingleRoom extends Component {
     constructor(props) {
         super(props)
-        console.log(this.props)
-        // this.state = {
-        //     slug: this.props.match.params.slug
-        // }
+        // console.log(this.props)
+        this.state = {
+            slug: "double-deluxe", // this.props.match.params.slug
+            defaultBcg: defaultBcg
+        }
     }
+
+    static contextType = RoomContext
 
     // componentDidMount() {
     // }
     
 
     render() {
+        const {getRoom} = this.context
+        // console.log(getRoom)
+        const room = getRoom(this.state.slug)
+        console.log(room);
+        if(!room) {
+            return (
+            <div className="error">
+                <h3>no such room could be found...</h3>
+                <Link to="/rooms" className="btn-primary">
+                back to rooms
+                </Link>
+            </div>
+            )
+        }
+        const {name, description, capacity, size, proce, extras, breakfast, pets, images} = room
         return (
             <div>
-                hello from single room
+                hello from single room {room.name}
             </div>
         )
     }
