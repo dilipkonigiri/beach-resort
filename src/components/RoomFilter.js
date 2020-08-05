@@ -14,7 +14,7 @@ export default function RoomFilter({rooms}) {
 
     const {
         handleChange,
-        type,
+        // type,
         capacity,
         price,
         minPrice,
